@@ -1,3 +1,7 @@
 .idea/
 .svn/
 .git/
+__pycache__/
+testdb_connect.py
+test_getsettings.py
+

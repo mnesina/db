@@ -170,7 +170,7 @@ class db(object):
         result = res_arr[0]
         return result
 
-    def getSingle(self,query):
+    def getElement(self,query):
         """
 
         :param query:
@@ -264,7 +264,7 @@ class db(object):
 
         :return:
         """
-        result = self.getSingle("select version()")
+        result = self.getElement("select version()")
         return result
 
     def begin(self):
