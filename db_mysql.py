@@ -57,13 +57,20 @@ class db(object):
 
         # для MySQLdb - for MySQLdb
         if self.__dblib == 'MySQLdb' :
-            passwd = settings['password']
-            del settings['password']
-            settings['passwd'] = passwd
+            try:
+                settings['password']
+                passwd = settings['password']
+                del settings['password']
+                settings['passwd'] = passwd
+            except:
+                settings['passwd']
 
-            dbname = settings['database']
-            del settings['database']
-            settings['db'] = dbname
+            try:
+                dbname = settings['database']
+                del settings['database']
+                settings['db'] = dbname
+            except:
+                settings['db']
 
             settings['use_unicode'] = True,
             settings['charset'] = "utf8"
