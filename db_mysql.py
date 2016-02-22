@@ -63,14 +63,22 @@ class db(object):
                 del settings['password']
                 settings['passwd'] = passwd
             except:
-                settings['passwd']
+                try:
+                    settings['passwd']
+                except:
+                    print("Error:", sys.exc_info()[0])
+                    raise
 
             try:
                 dbname = settings['database']
                 del settings['database']
                 settings['db'] = dbname
             except:
-                settings['db']
+                try:
+                    settings['db']
+                except:
+                    print("Error:", sys.exc_info()[0])
+                    raise
 
             settings['use_unicode'] = True,
             settings['charset'] = "utf8"
