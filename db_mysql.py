@@ -182,7 +182,10 @@ class db(object):
         :return:
         """
         res_arr = self.getSelect(query)
-        result = res_arr[0]
+        if len(res_arr) > 0 :
+            result = res_arr[0]
+        else:
+            result = False
         return result
 
     def getElement(self,query):
