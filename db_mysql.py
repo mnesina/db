@@ -198,12 +198,13 @@ class db(object):
         for field in result:
             return result[field]
 
-    def addInfo(self, data, table):
+    def addInfo(self, data, table, ignore=''):
         """
 
         :param data:
         :param table:
-        :return:
+        :param ignore '' or 'IGNORE'
+        :return: id записи или ошибку
         """
         #https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html
         #new_str = db.converter.escape('string to be escaped') - http://stackoverflow.com/questions/7540803/escaping-strings-with-python-mysql-connector
@@ -216,7 +217,7 @@ class db(object):
             add_tmp_val.append('\'%s\'' % (tmp))
         add_str = ','.join(add_tmp)
         add_val_str = ','.join(add_tmp_val)
-        query = 'INSERT IGNORE INTO  %s (%s) VALUES (%s)' % (table,add_str,add_val_str)
+        query = 'INSERT %s INTO  %s (%s) VALUES (%s)' % (ignore,table,add_str,add_val_str)
 
         #print(query,' ')
 
