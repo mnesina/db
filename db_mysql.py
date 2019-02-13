@@ -6,8 +6,8 @@ except:
     import mysql.connector as mysql_conn
 
 
-import cgi
-import sys
+#import cgi, sys # cgi.escape is deprecated use html.escape instead
+import html, sys
 
 
 ## Утановка connector - an installation of connector
@@ -146,6 +146,7 @@ class db(object):
 
     def getSelect(self, query):
         """
+        NB! в этой модификации возвращаются только поля со значениями не null (None)
         http://javacoffee.de/?p=953
         :param query:
         :return:
