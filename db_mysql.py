@@ -199,12 +199,13 @@ class db(object):
         for field in result:
             return result[field]
 
-    def addInfo(self, data, table, ignore=''):
+    def addInfo(self, data, table, ignore='', on_duplicate_key=''):
         """
 
         :param data:
         :param table:
         :param ignore '' or 'IGNORE'
+        :param on_duplicate_key ''/выражение, например: ON DUPLICATE KEY UPDATE `count`=30
         :return: id записи или ошибку
         """
         #https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html
@@ -218,7 +219,7 @@ class db(object):
             add_tmp_val.append('\'%s\'' % (tmp))
         add_str = ','.join(add_tmp)
         add_val_str = ','.join(add_tmp_val)
-        query = 'INSERT %s INTO  %s (%s) VALUES (%s)' % (ignore,table,add_str,add_val_str)
+        query = 'INSERT %s INTO  %s (%s) VALUES (%s) %s' % (ignore,table,add_str,add_val_str, on_duplicate_key)
 
         #print(query,' ')
 
